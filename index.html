@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -197,23 +196,71 @@
     .recog-hdr .eyebrow { color: var(--rg); margin-bottom: .8rem; }
     .recog-hdr h2 { font-family: 'Cinzel', serif; font-weight: 400; font-size: clamp(2rem, 3.8vw, 3.2rem); color: rgba(253,251,249,.92); line-height: 1.12; margin-bottom: .8rem; }
     .recog-hdr .sub { font-family: 'Noto Sans KR', sans-serif; font-size: .78rem; font-weight: 300; color: rgba(253,251,249,.45); line-height: 1.9; max-width: 30rem; }
-    .recog-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,.1); }
-    @media (max-width: 960px) { .recog-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 520px) { .recog-grid { grid-template-columns: 1fr; } }
-    .recog-col { padding: 3rem 2rem 3rem 0; border-right: 1px solid rgba(255,255,255,.08); }
-    .recog-col:last-child { border-right: none; padding-right: 0; }
-    @media (max-width: 960px) { .recog-col:nth-child(2) { border-right: none; } .recog-col { border-bottom: 1px solid rgba(255,255,255,.08); } }
-    @media (max-width: 520px) { .recog-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); padding-right: 0; } .recog-col:last-child { border-bottom: none; } }
-    .recog-cat { font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--rg); margin-bottom: 1.6rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(229,179,155,.2); }
-    .recog-list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
-    .recog-item { font-family: 'Noto Sans KR', sans-serif; font-size: .74rem; font-weight: 300; color: rgba(253,251,249,.62); line-height: 1.65; }
-    .recog-item .yr { display: block; font-family: 'Cinzel', serif; font-size: .66rem; font-weight: 400; color: rgba(229,179,155,.8); letter-spacing: .1em; margin-bottom: .2rem; }
-    .recog-item strong { color: rgba(253,251,249,.92); font-weight: 400; display: block; margin-bottom: .15rem; }
-    .recog-bar { grid-column: 1 / -1; margin-top: 3.5rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,.1); display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+
+    /* Recognition cards — 전면 */
+    .recog-cards { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,.1); }
+    @media (max-width: 900px) { .recog-cards { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .recog-cards { grid-template-columns: 1fr; } }
+
+    .recog-card {
+      padding: 3rem 2rem 3rem 0;
+      border-right: 1px solid rgba(255,255,255,.08);
+      cursor: pointer;
+      transition: background .3s;
+      position: relative;
+    }
+    .recog-card:last-child { border-right: none; padding-right: 0; }
+    .recog-card:hover { background: rgba(255,255,255,.03); }
+    @media (max-width: 900px) {
+      .recog-card:nth-child(2) { border-right: none; }
+      .recog-card { border-bottom: 1px solid rgba(255,255,255,.08); }
+      .recog-card:nth-last-child(-n+2) { border-bottom: none; }
+    }
+    @media (max-width: 480px) {
+      .recog-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); padding-right: 0; }
+      .recog-card:last-child { border-bottom: none; }
+    }
+    .rc-cat {
+      font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--rg); margin-bottom: 1.4rem;
+      padding-bottom: 1rem; border-bottom: 1px solid rgba(229,179,155,.2);
+    }
+    .rc-count {
+      font-family: 'Cinzel', serif; font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400; color: rgba(253,251,249,.9);
+      line-height: 1; margin-bottom: .5rem;
+    }
+    .rc-label {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: .68rem; font-weight: 300;
+      color: rgba(253,251,249,.4); letter-spacing: .06em;
+      margin-bottom: 1.8rem;
+    }
+    .rc-cta {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(229,179,155,.7);
+      transition: color .3s;
+    }
+    .recog-card:hover .rc-cta { color: var(--rg); }
+    .rc-cta svg { transition: transform .3s; }
+    .recog-card:hover .rc-cta svg { transform: translateX(4px); }
+
+    /* Highlight bar */
+    .recog-bar { margin-top: 3.5rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,.1); display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
     .recog-stat { display: flex; flex-direction: column; gap: .4rem; }
     .s-num { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 400; color: var(--rg); line-height: 1.2; }
     .s-desc { font-family: 'Noto Sans KR', sans-serif; font-size: .62rem; font-weight: 300; letter-spacing: .1em; color: rgba(253,251,249,.45); }
-    .recog-nda { grid-column: 1 / -1; font-family: 'Noto Sans KR', sans-serif; font-size: .68rem; font-weight: 300; color: rgba(253,251,249,.28); line-height: 2; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.06); max-width: 52rem; }
+    .recog-nda { font-family: 'Noto Sans KR', sans-serif; font-size: .68rem; font-weight: 300; color: rgba(253,251,249,.28); line-height: 2; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.06); max-width: 52rem; }
+
+    /* Modal detail list */
+    .recog-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
+    .recog-item { font-family: 'Noto Sans KR', sans-serif; font-size: .78rem; font-weight: 300; color: #6a6460; line-height: 1.75; padding-bottom: 1.4rem; border-bottom: 1px solid var(--line); }
+    .recog-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .recog-item .yr { display: block; font-family: 'Cinzel', serif; font-size: .66rem; font-weight: 400; color: var(--rg); letter-spacing: .1em; margin-bottom: .3rem; }
+    .recog-item strong { color: var(--char); font-weight: 500; display: block; margin-bottom: .2rem; }
 
     /* ══ §8 FINE JEWELRY ══ */
     #jewelry { background: var(--cream); padding: 7rem 2rem 8rem; }
@@ -379,7 +426,7 @@
             The first jewel I remember was not mine. It sat on my mother's hand when I was eight — a ruby so saturated it seemed to carry its own weather. That stone has been with me ever since, in every piece I have made and every brand I have directed.
           </p>
           <p>
-            Before jewelry, there was music. Piano at the École Normale de Musique de Paris. at the Mozarteum in Salzburg, studying Orff music and movement — a discipline that treats sound, space, and the body as a single language. That training never left. It simply changed materials. From keys to metal. From rhythm to form. The obsession with precision remained identical.
+            Before jewelry, there was music. Piano at the École Normale de Musique de Paris. A year at the Mozarteum in Salzburg, studying Orff music and movement — a discipline that treats sound, space, and the body as a single language. That training never left. It simply changed materials. From keys to metal. From rhythm to form. The obsession with precision remained identical.
           </p>
           <p>
             MICHAELLA SHIN began in 2010 with the Genesis collection — a meditation on the sacred order of light and water. Since then, the studio has moved across cities and markets: department store floors in Seoul, a runway of our own, buyer meetings in Abu Dhabi, trade floors in New York, editorial pages in Shanghai, live broadcasts in Hangzhou. Connecting Korean designers to Sichuan. Always returning to Seoul.
@@ -551,139 +598,72 @@
           </p>
         </div>
 
-        <div class="recog-grid">
+        <div class="recog-cards">
 
-          <div class="recog-col reveal">
-            <h3 class="recog-cat">Awards &amp; Selection</h3>
-            <ul class="recog-list">
-              <li class="recog-item">
-                <span class="yr">2012</span>
-                <strong>Best Jewelry Design Award</strong>
-                8th International Precious Metal Jewelry Exhibition<br />
-                Korea Jewelry Industry Association
-              </li>
-              <li class="recog-item">
-                <span class="yr">2012 — Ongoing</span>
-                <strong>Emerging Designer</strong>
-                Korean Ministry of SMEs and Startups<br />
-                → Korea Fashion Code official exhibitor, multiple years
-              </li>
-            </ul>
+          <div class="recog-card reveal" onclick="openRecogModal('awards')">
+            <p class="rc-cat">Awards &amp; Selection</p>
+            <p class="rc-count">2</p>
+            <p class="rc-label">Recognitions</p>
+            <span class="rc-cta">
+              View Details
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
           </div>
 
-          <div class="recog-col reveal d1">
-            <h3 class="recog-cat">Retail &amp; Sales</h3>
-            <ul class="recog-list">
-              <li class="recog-item">
-                <strong>#1 Designer Brand Sales</strong>
-                Hyundai Department Store Trade Center<br />
-                Autumn Designer Fair
-              </li>
-              <li class="recog-item">
-                <strong>Hyundai &middot; Shinsegae</strong>
-                Designer Fair pop-up exhibitions
-              </li>
-              <li class="recog-item">
-                <strong>Lotte Main &middot; Lotte Mall &middot; Doota</strong>
-                Retail presence, Seoul
-              </li>
-            </ul>
+          <div class="recog-card reveal d1" onclick="openRecogModal('retail')">
+            <p class="rc-cat">Retail &amp; Sales</p>
+            <p class="rc-count">5</p>
+            <p class="rc-label">Venues</p>
+            <span class="rc-cta">
+              View Details
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
           </div>
 
-          <div class="recog-col reveal d2">
-            <h3 class="recog-cat">Press &amp; Media</h3>
-            <ul class="recog-list">
-              <li class="recog-item">
-                <strong>VJ Magazine · TV Feature</strong>
-                Interview &amp; studio documentary
-              </li>
-              <li class="recog-item">
-                <span class="yr">2015.01</span>
-                <strong>Sports Today</strong>
-                Collection runway — photo feature
-              </li>
-              <li class="recog-item">
-                <span class="yr">2015.12</span>
-                <strong>Financial News</strong>
-                Executive interview —<br />
-                "The sensibility that made Alibaba take notice"
-              </li>
-              <li class="recog-item">
-                <strong>Magazine jewelry sponsor</strong>
-                Ha Won-mi editorial<br />
-                <span style="font-size:.64rem;color:rgba(253,251,249,.38);">(wife of MLB player Choo Shin-soo)</span>
-              </li>
-              <li class="recog-item">
-                <strong>Tencent News</strong>
-                Brand feature · China
-              </li>
-              <li class="recog-item">
-                <strong>China &amp; Taiwan Editorials</strong>
-                Fashion publications, shot in Seoul
-              </li>
-            </ul>
+          <div class="recog-card reveal d2" onclick="openRecogModal('press')">
+            <p class="rc-cat">Press &amp; Media</p>
+            <p class="rc-count">6</p>
+            <p class="rc-label">Features</p>
+            <span class="rc-cta">
+              View Details
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
           </div>
 
-          <div class="recog-col reveal d3">
-            <h3 class="recog-cat">International</h3>
-            <ul class="recog-list">
-              <li class="recog-item">
-                <strong>New York</strong>
-                Trade Exhibition · direct buyer engagement
-              </li>
-              <li class="recog-item">
-                <strong>Korea Fashion Code</strong>
-                Harbin department store head visited booth —<br />invited for retail entry
-              </li>
-              <li class="recog-item">
-                <strong>Abu Dhabi, UAE</strong>
-                Buyer development · Marina Mall
-              </li>
-              <li class="recog-item">
-                <strong>Tokyo</strong>
-                Jewelry house collaboration
-              </li>
-              <li class="recog-item">
-                <strong>Hangzhou, China</strong>
-                DINGJUN &amp; DICTION partnerships<br />
-                Alibaba Taobao Live — produced with China's Top&nbsp;3 influencer agency
-              </li>
-              <li class="recog-item">
-                <span class="yr">2019</span>
-                <strong>Shijiazhuang, China</strong>
-                Lecheng International — official stage
-              </li>
-              <li class="recog-item">
-                <strong>Sichuan Province</strong>
-                Korean designer collaboration coordinator
-              </li>
-            </ul>
+          <div class="recog-card reveal d3" onclick="openRecogModal('international')">
+            <p class="rc-cat">International</p>
+            <p class="rc-count">7</p>
+            <p class="rc-label">Markets</p>
+            <span class="rc-cta">
+              View Details
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
           </div>
-
-          <div class="recog-bar reveal">
-            <div class="recog-stat">
-              <span class="s-num">Since 2010</span>
-              <span class="s-desc">Independent Practice</span>
-            </div>
-            <div class="recog-stat">
-              <span class="s-num">Seoul Runway</span>
-              <span class="s-desc">MICHAELLA SHIN Collection</span>
-            </div>
-            <div class="recog-stat">
-              <span class="s-num">Block B · Celebrity Placements</span>
-              <span class="s-desc">Worn at official events</span>
-            </div>
-            <div class="recog-stat">
-              <span class="s-num">Seoul · NY · Abu Dhabi · Tokyo · Shanghai</span>
-              <span class="s-desc">Markets Entered</span>
-            </div>
-          </div>
-
-          <p class="recog-nda reveal">
-            Corporate jewelry experience includes planning, design, and sample production for a major Korean fashion conglomerate — details shared under engagement.
-          </p>
 
         </div>
+
+        <div class="recog-bar reveal">
+          <div class="recog-stat">
+            <span class="s-num">Since 2010</span>
+            <span class="s-desc">Independent Practice</span>
+          </div>
+          <div class="recog-stat">
+            <span class="s-num">Seoul Runway</span>
+            <span class="s-desc">MICHAELLA SHIN Collection</span>
+          </div>
+          <div class="recog-stat">
+            <span class="s-num">Block B · Celebrity Placements</span>
+            <span class="s-desc">Worn at official events</span>
+          </div>
+          <div class="recog-stat">
+            <span class="s-num">Seoul · NY · Abu Dhabi · Tokyo · Shanghai</span>
+            <span class="s-desc">Markets Entered</span>
+          </div>
+        </div>
+
+        <p class="recog-nda reveal">
+          Corporate jewelry experience includes planning, design, and sample production for a major Korean fashion conglomerate — details shared under engagement.
+        </p>
       </div>
     </section>
 
@@ -1013,6 +993,70 @@
       document.body.style.overflow = '';
       resetNav();
     }
+    /* ══ RECOGNITION MODAL DATA ══ */
+    const recogData = {
+      awards: {
+        title: 'Awards & Selection',
+        items: [
+          { yr: '2012', strong: 'Best Jewelry Design Award', desc: '8th International Precious Metal Jewelry Exhibition · Korea Jewelry Industry Association' },
+          { yr: '2012 — Ongoing', strong: 'Emerging Designer', desc: 'Korean Ministry of SMEs and Startups → Korea Fashion Code official exhibitor, multiple years' },
+        ]
+      },
+      retail: {
+        title: 'Retail & Sales',
+        items: [
+          { yr: '', strong: '#1 Designer Brand Sales', desc: 'Hyundai Department Store Trade Center · Autumn Designer Fair' },
+          { yr: '', strong: 'Hyundai · Shinsegae', desc: 'Designer Fair pop-up exhibitions' },
+          { yr: '', strong: 'Lotte Department Store Main', desc: 'Pop-up exhibition, Seoul' },
+          { yr: '', strong: 'Lotte Mall · Doota', desc: 'Retail presence, Seoul' },
+          { yr: '', strong: 'Alibaba Taobao', desc: 'Official mobile store entry, China' },
+        ]
+      },
+      press: {
+        title: 'Press & Media',
+        items: [
+          { yr: '', strong: 'VJ Magazine · TV Feature', desc: 'Interview & studio documentary — "From design to carving, entirely by hand"' },
+          { yr: '2015.01', strong: 'Sports Today', desc: 'Collection runway — photo feature, 2 articles' },
+          { yr: '2015.12', strong: 'Financial News (파이낸셜뉴스)', desc: 'Executive interview — "The sensibility that made Alibaba take notice"' },
+          { yr: '', strong: 'Magazine jewelry sponsor', desc: 'Ha Won-mi editorial feature (wife of MLB player Choo Shin-soo, $138M contract)' },
+          { yr: '', strong: 'Tencent News', desc: 'Brand feature · China' },
+          { yr: '', strong: 'China & Taiwan Editorials', desc: 'Fashion publications, shot on location in Seoul' },
+        ]
+      },
+      international: {
+        title: 'International',
+        items: [
+          { yr: '', strong: 'New York', desc: 'Trade Exhibition · direct buyer engagement' },
+          { yr: '', strong: 'Korea Fashion Code', desc: 'Harbin department store head visited booth — invited for retail entry' },
+          { yr: '', strong: 'Abu Dhabi, UAE', desc: 'Buyer development · Marina Mall' },
+          { yr: '', strong: 'Tokyo', desc: 'Jewelry house collaboration meeting' },
+          { yr: '', strong: 'Hangzhou, China', desc: 'Strategic brand partnership · Alibaba Taobao Live Commerce produced with China\'s Top 3 influencer agency' },
+          { yr: '2019', strong: 'Shijiazhuang, China', desc: 'Lecheng International — official stage participant' },
+          { yr: '', strong: 'Sichuan Province', desc: 'Korean designer collaboration coordinator' },
+        ]
+      }
+    };
+
+    function openRecogModal(id) {
+      const p = recogData[id]; if (!p) return;
+      const itemsHtml = p.items.map(item => `
+        <li class="recog-item">
+          ${item.yr ? `<span class="yr">${item.yr}</span>` : ''}
+          <strong>${item.strong}</strong>
+          ${item.desc}
+        </li>`).join('');
+
+      document.getElementById('modal-box').innerHTML = `
+        <div class="modal-close"><button onclick="closeModal()" aria-label="Close">&times;</button></div>
+        <div style="padding:2.4rem 2.4rem 3rem;background:var(--cream);">
+          <p style="font-family:'Noto Sans KR',sans-serif;font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;color:var(--rg);margin-bottom:.6rem;">03 — Track Record</p>
+          <h3 style="font-family:'Cinzel',serif;font-size:1.8rem;font-weight:400;color:var(--ink);margin-bottom:.5rem;">${p.title}</h3>
+          <div style="width:36px;height:1px;background:var(--rg);margin-bottom:2rem;"></div>
+          <ul class="recog-list">${itemsHtml}</ul>
+        </div>`;
+      openOverlay();
+    }
+
     function resetNav() { s1.style.cssText = ''; s2.style.opacity = '1'; s3.style.cssText = ''; }
   </script>
 
